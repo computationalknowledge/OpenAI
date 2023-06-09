@@ -1,0 +1,35 @@
+write python code using import openai to generate 2 lists: 
+famous south american singers, famous singers from Spain. 
+Print out each with names of their albums
+
+To generate two lists of famous South American singers and famous singers from Spain along with their album names using OpenAI, you will need to have an API key from OpenAI. 
+You can sign up for an API key at https://beta.openai.com/signup/. Once you have the API key, you can install the openai Python package using pip install openai.
+
+import openai
+
+# Set up your OpenAI API key
+openai.api_key = " "
+
+def get_singers_and_albums(region):
+    response = openai.Completion.create(
+        engine="text-davinci-002",
+        prompt=f"List famous singers from {region} and their albums:",
+        max_tokens=50,
+        n=1,
+        stop=None,
+        temperature=0.7,
+    )
+    return response.choices[0].text.strip()
+
+south_american_singers = get_singers_and_albums("South America")
+spanish_singers = get_singers_and_albums("Spain")
+
+print("South American Singers and their albums:")
+print(south_american_singers)
+print("\nSpanish Singers and their albums:")
+print(spanish_singers)
+
+
+
+This code defines a function get_singers_and_albums that takes a region as an input and prompts the OpenAI API to generate a list of famous singers and their albums from that region. The function then returns the generated text.
+We call this function for both "South American" and "Spanish" regions and print the results. Note that the quality and accuracy of the generated text might vary depending on the model and its training data.
